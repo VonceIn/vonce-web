@@ -1,26 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 @import "tailwindcss";
+@config "../tailwind.config.ts";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+html, body {
+    scroll-behavior: smooth;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+    --font-merriweather: "Merriweather", serif;
+    --font-inter: "Inter", sans-serif;
+    --font-ubuntu: "Ubuntu", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@layer utilities {
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px; /* for horizontal scrollbar */
+    }
+
+    /* Scrollbar track (background) */
+    ::-webkit-scrollbar-track {
+        background: #fff7eb;
+        border-radius: 10px;
+    }
+
+    /* Scrollbar thumb (the draggable part) */
+    ::-webkit-scrollbar-thumb {
+        background: #f53838;
+        border-radius: 10px;
+    }
+
+    /* On hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #a12727;
+    }
+
+    .footer-animated-underline {
+        @apply relative after:bg-primary after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:transition-transform after:duration-300 after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-100 after:ease-[cubic-bezier(0.65_0.05_0.36_1)]
+    }
+
+    .error-progress-bar {
+        background-color: #fff7eb !important; /* custom color */
+        height: 4px !important;               /* adjust thickness */
+        border-radius: 0 0 8px 8px;
+    }
+
+    ::view-transition-group(root) {
+        z-index: auto !important;
+    }
+
+    ::view-transition-image-pair(root) {
+        isolation: isolate;
+        will-change: transform, opacity, scale;
+        z-index: 1;
+    }
+
+    ::view-transition-new(root) {
+        z-index: 2;
+        animation: none !important;
+    }
+
+    ::view-transition-old(root) {
+        z-index: 1;
+        animation: none !important;
+    }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* app/globals.css */
+
+@font-face {
+    font-family: 'Telegraf';
+    src: url('/fonts/TelegrafRegular_272984.woff2') format('woff2'),
+         url('/fonts/TelegrafRegular_272984.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
 }
+  
+@font-face {
+    font-family: 'Telegraf';
+    src: url('/fonts/Telegraf UltraLight 200.woff2') format('woff2'),
+         url('/fonts/Telegraf UltraLight 200.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+}
+  
+@font-face {
+    font-family: 'Telegraf';
+    src: url('/fonts/Telegraf UltraBold 800.woff2') format('woff2'),
+         url('/fonts/Telegraf UltraBold 800.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Radnika';
+    src: url('/fonts/Radnika-Medium.otf') format('opentype'),
+         url('/fonts/Radnika-Medium.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+

@@ -18,6 +18,7 @@ export async function GET(req: NextRequest) {
 
         if (queue.length < 2) {
             console.log('[Edge] - Only One User!');
+            return NextResponse.json({ message: 'Not enough users' }, { status: 200 });
         }
 
         // let queue = [
@@ -79,7 +80,7 @@ export async function GET(req: NextRequest) {
                 supabaseAdmin.from('match_queue').select('user_id').eq('user_id', user2.user_id),
             ]);
 
-            if (!u1Check.data?.length || u2Check.data?.length) {
+            if (!u1Check.data?.length || !u2Check.data?.length) {
                 console.log('[Edge] - Skipped pair: one of the users cancelled');
                 continue;
             }
